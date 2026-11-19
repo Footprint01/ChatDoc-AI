@@ -1,0 +1,5 @@
+.env.example
+.env
+.env.*
+.env.local
+HUGGINGFACE_API_KEY=hf_NEW_TOKEN_HERE

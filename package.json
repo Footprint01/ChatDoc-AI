@@ -1,0 +1,49 @@
+{
+  "name": "docusphere",
+  "version": "1.0.0",
+  "description": "AI Document Intelligence Hub for KMRL - Multilingual document processing with Gemini AI",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Static site - no build needed'",
+    "start": "npx serve .",
+    "deploy": "netlify deploy --prod",
+    "deploy:preview": "netlify deploy",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "document-processing",
+    "ai",
+    "nlp",
+    "ocr",
+    "multilingual",
+    "rag",
+    "gemini",
+    "pinecone",
+    "fastapi",
+    "kmrl"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/docusphere.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/docusphere/issues"
+  },
+  "homepage": "https://docusphere-kmrl.netlify.app",
+  "devDependencies": {
+    "@netlify/functions": "^2.4.1",
+    "@playwright/test": "^1.41.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

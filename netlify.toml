@@ -1,0 +1,58 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[dev]
+  port = 3000
+  publish = "."
+  functions = "netlify/functions"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# API proxy to backend
+[[redirects]]
+  from = "/api/*"
+  to = "https://docusphere-api.vercel.app/api/:splat"
+  status = 200
+  force = true
+  headers = {X-Custom-Header = "docusphere-proxy"}
+
+# Functions redirects
+[[redirects]]
+  from = "/.netlify/functions/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Environment-specific settings
+[context.production]
+  environment = { NODE_ENV = "production" }
+
+[context.deploy-preview]
+  environment = { NODE_ENV = "preview" }
+
+[context.branch-deploy]
+  environment = { NODE_ENV = "development" }
